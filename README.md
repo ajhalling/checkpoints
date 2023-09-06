@@ -1,6 +1,6 @@
 # Checkpoints (Forked Version)
 
-**Note:** This is a forked version of the `checkpoints` module that is specifically designed to remove reliance on the deprecated `iterrows()` and `iteritems()` functions in Pandas. If you are using a newer version of Pandas and want to continue using `checkpoints`, you can use this forked version.
+**Note:** This is a forked version of [`checkpoints`](https://github.com/ResidentMario/checkpoints) that is specifically designed to remove reliance on the deprecated `iterrows()` and `iteritems()` functions in Pandas. If you are using a newer version of Pandas and want to continue using `checkpoints`, you can use this forked version.
 
 ![demo](http://i.imgur.com/paxQ51Y.gif)
 
@@ -22,7 +22,7 @@ This will install the latest version of `checkpoints` from the master branch, as
 
 ## Why?
 
-For a writeup with a practical example of what `checkpoints` can do for you see [this post on my personal blog](http://www.residentmar.io/2016/10/29/saving-progress-pandas.html).
+For a writeup with a practical example of what `checkpoints` can do for you see [this post on Mario's personal blog](http://www.residentmar.io/2016/10/29/saving-progress-pandas.html).
 
 ## Quickstart
 
@@ -137,9 +137,3 @@ simply return `None`. This means that e.g. the following will silently fail:
 
 `checkpoints` provides a form of [defensive programming](https://en.wikipedia.org/wiki/Defensive_programming). If
 you're a fan of this sort of thing, you should also check out [`engarde`](https://github.com/TomAugspurger/engarde).
-
-## Contributing
-
-Bugs? Thoughts? Feature requests? [Throw them at the bug tracker and I'll take a look](https://github.com/ResidentMario/checkpoints/issues).
-
-As always I'm very interested in hearing feedback&mdash;reach out to me at `aleksey@residentmar.io`.
