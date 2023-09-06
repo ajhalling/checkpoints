@@ -16,9 +16,7 @@ process to complete, only to lose all of your data on the last iteration!
 
 To install `checkpoints` from this repository, run the following command in your terminal:
 
-    ```shell
-    pip install https://github.com/ajhalling/checkpoints/archive/refs/heads/master.zip
-    ```
+`pip install https://github.com/ajhalling/checkpoints/archive/refs/heads/master.zip`
 
 This will install the latest version of `checkpoints` from the master branch, as this forked version is not on PyPi.
 
