@@ -35,12 +35,7 @@ class CheckpointStateMachine:
                 kwargs.pop('flush')
                 self.flush()
 
-            # If index is not defined, define it. Note that this is not the index of the original DataFrame,
-            # but the index of concatenation. If we are slicing and then concatenating on the columns (0),
-            # the index that we must append at the end is of the column headers; if we are slicing and concatenating on
-            # the rows (1), it's the row headers, e.g. the original index.
-            #
-            # See `__getattr__` for more shenanigans around this.
+            # If index is not defined, define it.
             if self._index is None:
                 if 'axis' in kwargs and (kwargs['axis'] == 1 or kwargs['axis'] == 'columns'):
                     self._axis = 1
@@ -62,25 +57,25 @@ class CheckpointStateMachine:
             df_remaining = df.iloc[len(self._results):]
 
             # Replace the original applied `func` with a stateful wrapper.
-            def wrapper(srs, **kwargs):
+            def wrapper(row):
                 try:
-                    self._results.append(func(srs, **kwargs))
+                    self._results.append(func(row))
                 except (KeyboardInterrupt, SystemExit):
                     raise
                 except:
                     warnings.warn("Failure on index {0}".format(len(self._results)), UserWarning)
                     raise
 
-            # Populate `self.results`.
+            # Populate `self.results` using itertuples.
             if 'axis' in kwargs and (kwargs['axis'] == 1 or kwargs['axis'] == 'columns'):
                 kwargs.pop('axis')
-                for _, srs in df_remaining.iterrows():
-                    wrapper(srs, **kwargs)
+                for row in df_remaining.itertuples(index=False, name=None):
+                    wrapper(row)
             else:
                 if 'axis' in kwargs:
                     kwargs.pop('axis')
-                for _, srs in df_remaining.iteritems():
-                    wrapper(srs, **kwargs)
+                for row in df_remaining.itertuples(index=True, name=None):
+                    wrapper(row)
 
             # If we got here, then we didn't exit out due to an exception, and we can finish the method successfully.
             # Let `pandas.apply` handle concatenation using a trivial combiner.
@@ -93,6 +88,7 @@ class CheckpointStateMachine:
             return out
 
         DataFrame.safe_apply = safe_apply
+        
 
         def safe_map(srs, func, *args, **kwargs):
             """
@@ -127,7 +123,7 @@ class CheckpointStateMachine:
                     raise
 
             # Populate `self.results`.
-            for _, val in srs_remaining.iteritems():
+            for val in srs_remaining:
                 wrapper(val)
 
             # If we got here, then we didn't exit out due to an exception, and we can finish the method successfully.
@@ -141,6 +137,7 @@ class CheckpointStateMachine:
             return out
 
         Series.safe_map = safe_map
+
 
     def __getattr__(self, item):
         """
