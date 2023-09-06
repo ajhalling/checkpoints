@@ -14,27 +14,13 @@ process to complete, only to lose all of your data on the last iteration!
 
 ## Installation
 
-To install `checkpoints` from this repository, follow these steps:
-
-1. Clone the repository to your local machine:
+To install `checkpoints` from this repository, run the following command in your terminal:
 
     ```shell
-    git clone https://github.com/ResidentMario/checkpoints.git
+    pip install https://github.com/ajhalling/checkpoints/archive/refs/heads/master.zip
     ```
 
-2. Navigate to the cloned directory:
-
-    ```shell
-    cd checkpoints
-    ```
-
-3. Install the package using `pip` and the `setup.py` script:
-
-    ```shell
-    pip install .
-    ```
-
-This will install the latest version of `checkpoints` from the local source, which may be ahead of the version available on PyPI.
+This will install the latest version of `checkpoints` from the master branch, as this forked version is not on PyPi.
 
 ## Why?
 
