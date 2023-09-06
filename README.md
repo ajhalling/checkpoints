@@ -1,4 +1,6 @@
-# checkpoints [![PyPi version](https://img.shields.io/pypi/v/checkpoints.svg)](https://pypi.python.org/pypi/checkpoints/) ![t](https://img.shields.io/badge/status-stable-green.svg)
+# Checkpoints (Forked Version)
+
+**Note:** This is a forked version of the `checkpoints` module that is specifically designed to remove reliance on the deprecated `iterrows()` and `iteritems()` functions in Pandas. If you are using a newer version of Pandas and want to continue using `checkpoints`, you can use this forked version.
 
 ![demo](http://i.imgur.com/paxQ51Y.gif)
 
@@ -10,7 +12,29 @@ This means that the next time these functions are called, the operation will pic
 of all the way back at the beginning of the map. After all, there's nothing more aggrevating than waiting ages for a
 process to complete, only to lose all of your data on the last iteration!
 
-Just `pip install checkpoints` to get started.
+## Installation
+
+To install `checkpoints` from this repository, follow these steps:
+
+1. Clone the repository to your local machine:
+
+    ```shell
+    git clone https://github.com/ResidentMario/checkpoints.git
+    ```
+
+2. Navigate to the cloned directory:
+
+    ```shell
+    cd checkpoints
+    ```
+
+3. Install the package using `pip` and the `setup.py` script:
+
+    ```shell
+    pip install .
+    ```
+
+This will install the latest version of `checkpoints` from the local source, which may be ahead of the version available on PyPI.
 
 ## Why?
 
